@@ -23,7 +23,7 @@
     <div class="container mt-4">
         <div class="row">
             <div class="col text-center">
-                <h2>College Selection Tool 
+                <h2>College Selection Tool
                     <span class="count" id="filterCount">0</span>
                     <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
                 </h2>
@@ -36,12 +36,14 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown1"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Feature 1
+                        Academics
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                        <li><a class="dropdown-item" href="#">Item 1</a></li>
-                        <li><a class="dropdown-item" href="#">Item 2</a></li>
-                        <li><a class="dropdown-item" href="#">Item 3</a></li>
+                        <li><a class="dropdown-item" href="#" name="Academics" data-value="1">Academics: *</a></li>
+                        <li><a class="dropdown-item" href="#" name="Academics" data-value="2">Academics: **</a></li>
+                        <li><a class="dropdown-item" href="#" name="Academics" data-value="3">Academics: ***</a></li>
+                        <li><a class="dropdown-item" href="#" name="Academics" data-value="4">Academics: ****</a></li>
+                        <li><a class="dropdown-item" href="#" name="Academics" data-value="5">Academics: *****</a></li>
                     </ul>
                 </div>
             </div>
@@ -49,12 +51,14 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown2"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Feature 2
+                        Social
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdown2">
-                        <li><a class="dropdown-item" href="#">Item 1</a></li>
-                        <li><a class="dropdown-item" href="#">Item 2</a></li>
-                        <li><a class="dropdown-item" href="#">Item 3</a></li>
+                        <li><a class="dropdown-item" href="#" name="Social" data-value="1">Social: *</a></li>
+                        <li><a class="dropdown-item" href="#" name="Social" data-value="2">Social: **</a></li>
+                        <li><a class="dropdown-item" href="#" name="Social" data-value="3">Social: ***</a></li>
+                        <li><a class="dropdown-item" href="#" name="Social" data-value="4">Social: ****</a></li>
+                        <li><a class="dropdown-item" href="#" name="Social" data-value="5">Social: *****</a></li>
                     </ul>
                 </div>
             </div>
@@ -62,16 +66,29 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown3"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Feature 3
+                        Cost
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdown3">
-                        <li><a class="dropdown-item" href="#">Item 1</a></li>
-                        <li><a class="dropdown-item" href="#">Item 2</a></li>
-                        <li><a class="dropdown-item" href="#">Item 3</a></li>
+                        <li><a class="dropdown-item" href="#" name="Cost" data-value="1">Cost: *</a></li>
+                        <li><a class="dropdown-item" href="#" name="Cost" data-value="2">Cost: **</a></li>
+                        <li><a class="dropdown-item" href="#" name="Cost" data-value="3">Cost: ***</a></li>
+                        <li><a class="dropdown-item" href="#" name="Cost" data-value="4">Cost: ****</a></li>
+                        <li><a class="dropdown-item" href="#" name="Cost" data-value="5">Cost: *****</a></li>
                     </ul>
                 </div>
+
             </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#moreOptionsModal">
+                    More...
+                </button>
+            </div>
+
         </div>
+
+
+
+
         <!-- END: ed8c6549bwf9 -->
 
         <div class="row justify-content-center mt-3">
@@ -134,7 +151,9 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap Modal -->
+
+
+        <!-- Bootstrap Modals -->
         <div class="modal fade" id="collegeModal" tabindex="-1" aria-labelledby="collegeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -169,20 +188,38 @@
                             <li>John Redden</li>
                         </ul>
 
-                        <p>This app leverages 2022 IPEDS data as published on the 
-                            <a href="https://educationdata.urban.org/documentation/colleges.html" target="_blank">Education Portal</a> 
-                            API system. It is an interactive college selection tool (a web app). A D3.js map visualization where 
-                            users can hover over states (or counties) to discover colleges that match their specific criteria. 
-                            In addition, a proprietary institution “match score” based on a predictive model using statistically significant 
+                        <p>This app leverages 2022 IPEDS data as published on the
+                            <a href="https://educationdata.urban.org/documentation/colleges.html"
+                                target="_blank">Education Portal</a>
+                            API system. It is an interactive college selection tool (a web app). A D3.js map
+                            visualization where
+                            users can hover over states (or counties) to discover colleges that match their specific
+                            criteria.
+                            In addition, a proprietary institution “match score” based on a predictive model using
+                            statistically significant
                             features that correlate personalized preferences to college success.
-                        </p>                        
-                            <img src="./data/gtLogot.png" alt="GT Logo">
+                        </p>
+                        <img src="./data/gtLogot.png" alt="GT Logo">
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Add additional content or rows here -->
-
+        <!-- more options modal-->
+        <div class="modal fade" id="moreOptionsModal" tabindex="-1" aria-labelledby="moreOptionsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="moreOptionsModalLabel">More Options</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>More options soon...</p>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
 
     </div>
 
@@ -196,6 +233,7 @@
     <!-- Rest of your content -->
     <script src="./js/mapUS.js"></script>
     <script src="./js/collegesUS.js"></script>
+    <script src="./js/matchScore.js"></script>
     <script src="./js/main.js"></script>
 </body>
 

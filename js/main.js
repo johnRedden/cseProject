@@ -5,6 +5,7 @@ let activeCounty = null;
 let countyColor = 'lightblue';
 var allSchoolsCache = []; // Stores all schools as a list of objects
 var filterObj = {} // stores the filter as a global variable.
+var matchObj = {} // stores the match score weights a global variable.
 
 // init map
 drawMap();
@@ -56,22 +57,21 @@ document.addEventListener('DOMContentLoaded', function () {
         openCheckbox.checked ? filterObj.open_admissions_policy = 1 : delete filterObj.open_admissions_policy;
         colorCounties(); // handles filtering based on filterObj
     });
-    
-    
-});
 
-// dropdowns
-document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', function() {
-        var selectedText = this.textContent;
-        this.closest('.dropdown').querySelector('.dropdown-toggle').textContent = selectedText;
+    document.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const name = this.getAttribute('name');
+            const weight = this.getAttribute('data-value');
+            this.closest('.dropdown').querySelector('.dropdown-toggle').textContent = this.textContent;;
+            matchObj[name] = +weight;
+            changeMatchScores();
+        });
     });
+    
+    
 });
-
-
 
 //modal event listener
-// Initialization of the modal, assuming you've already done this
 var myModal = new bootstrap.Modal(document.getElementById('collegeModal'), {
     keyboard: true // Allowing modal to be closed with the keyboard
 });

@@ -127,9 +127,9 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -20px 0 0 -20px; /* Center the spinner */
-    display: none; /* Hidden by default */
-    z-index: 101; /* Ensure it's above everything else */
+    margin: -20px 0 0 -20px;
+    display: none; 
+    z-index: 101; 
 }
 
 @keyframes spin {
@@ -137,10 +137,11 @@
     100% { transform: rotate(360deg); }
 }
 
-.dropdown-toggle {
-    background-color: lightblue; /* Change this to your desired background color */
-    color: white; /* Change this to your desired text color */
+.btn {
+    background-color: lightblue;
+    color: white; 
     border: 1px solid lightseagreen;
 }
+
 
 

@@ -15,7 +15,8 @@ async function loadAllSchools() {
     //console.log('All schools loaded:', allSchoolsCache.length);
 
     // After loading all schools, fetch and merge admissions data
-    await mergeAdmissionsData(2022); // Specify the year as needed
+    await mergeAdmissionsData(2022).then(() => {    
+        console.log('Admissions data merged and flattened:', allSchoolsCache.length);});
 }
 function getFilteredData() {
     // If filterObj is empty, return all schools without filtering
@@ -25,6 +26,8 @@ function getFilteredData() {
     }
     //console.log('Filtering data:', filterObj);
     return allSchoolsCache.filter(school => {
+        //console.log('school', school);
+
         return Object.keys(filterObj).every(key => {
             // Handle different data types appropriately
             const schoolValue = Number.isNaN(+school[key]) ? school[key] : +school[key];
@@ -69,6 +72,7 @@ async function mergeAdmissionsData(year) {
 
     // Merge and flatten specified admissions data with allSchoolsCache
     allSchoolsCache = allSchoolsCache.map(school => {
+        school.match_score = 0;  //init match score to 0
         if (admissionsMap.has(school.unitid)) {
             const admissionsInfo = admissionsMap.get(school.unitid);
 
@@ -87,6 +91,17 @@ async function mergeAdmissionsData(year) {
 
     //console.log('Admissions data merged and flattened:', allSchoolsCache);
     //colorCounties(); // Reapply colors after merging admissions data
+}
+
+
+function changeMatchScores(){
+    //matchObj is a global containing user preferences for match scores
+
+    console.log('matchObj ', matchObj);
+
+    //TODO:  call all schools in allSchoolsCache and update the match score
+
+    return Math.floor(Math.random() * 81) + 10;
 }
 
 
