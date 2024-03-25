@@ -1,0 +1,146 @@
+#map {
+
+    width: 800px;
+    height: 600px;
+}
+.map-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically if needed */
+
+}
+
+.county {
+    fill: white;
+    stroke: antiquewhite;
+    stroke-width: 0.5px;
+}
+
+.county:hover {
+    fill: #aaa;
+}
+
+.state {
+    fill: none;
+    /* Make states transparent initially */
+    stroke: lightseagreen;
+    stroke-width: 0.5px;
+}
+
+.state:hover {
+    stroke: #000;
+    /* Highlight state on hover */
+}
+.bi-info-circle{
+    font-size: 0.5em;
+}
+.bi-info-circle {
+    cursor: pointer; 
+    color: lightblue; 
+}
+.bi-info-circle:hover {
+    color: lightgray; 
+}
+.count {
+    display: inline-block;
+    min-width: 50px; 
+    text-align: center;
+}
+#filterCount {
+    display: inline-block;
+    font-size: 0.4em;
+    border: 1px solid;
+    padding: 3px;
+    border-radius: 50%;
+    background-color: lightblue;
+    color: white;
+}
+#filterCount:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}
+.modal img {
+    overflow: auto;
+    width: 35%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.modal-header {
+    background-color: lightblue;
+}
+.modal-header .btn-close {
+    color: white !important;
+}
+.modal-title {
+    background-color: lightblue;
+    color: white;
+    padding: 10px; /* Optional: Add some padding to give the text some room */
+}
+.tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    opacity: 0;
+    /* Hidden by default */
+    border-radius: 5px;
+    /* Add rounded corners */
+    z-index: 1050; /* Ensure it's above Bootstrap's modal z-index */
+}
+
+#tooltip-info {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    /* Add more styles as needed */
+}
+
+.state-highlight {
+    stroke: slateblue; /* Bright color for emphasis */
+    stroke-width: 2px; /* Make the stroke thicker */
+}
+.county-highlight {
+    stroke: antiquewhite;
+    stroke-width: 2px; /* Make the stroke thicker */
+}
+
+
+.grayout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    display: none; /* Hidden by default */
+    z-index: 100; /* Ensure it's above the map */
+}
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #000;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -20px 0 0 -20px; /* Center the spinner */
+    display: none; /* Hidden by default */
+    z-index: 101; /* Ensure it's above everything else */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.dropdown-toggle {
+    background-color: lightblue; /* Change this to your desired background color */
+    color: white; /* Change this to your desired text color */
+    border: 1px solid lightseagreen;
+}
+
+
