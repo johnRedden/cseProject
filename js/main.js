@@ -3,6 +3,7 @@ var currentState = ''
 var stateCode = ''
 let activeCounty = null;
 let countyColor = 'lightblue';
+
 var allSchoolsCache = []; // Stores all schools as a list of objects
 var filterObj = {} // stores the filter as a global variable.
 var matchObj = {} // stores the match score weights a global variable.
@@ -60,11 +61,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.dropdown-item').forEach(item => {
         item.addEventListener('click', function() {
+
             const name = this.getAttribute('name');
             const weight = this.getAttribute('data-value');
             this.closest('.dropdown').querySelector('.dropdown-toggle').textContent = this.textContent;;
             matchObj[name] = +weight;
             changeMatchScores();
+            //console.log('After', allSchoolsCache);
         });
     });
     

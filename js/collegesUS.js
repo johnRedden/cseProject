@@ -16,10 +16,12 @@ async function loadAllSchools() {
 
     // After loading all schools, fetch and merge admissions data
     await mergeAdmissionsData(2022).then(() => {    
-        console.log('Admissions data merged and flattened:', allSchoolsCache.length);});
+        console.log('Admissions data merged and flattened:', allSchoolsCache);});
 }
+
 function getFilteredData() {
     // If filterObj is empty, return all schools without filtering
+    //console.log('filterObj', filterObj);
     if (Object.keys(filterObj).length === 0) {
         //console.log('No filters applied.');
         return allSchoolsCache;
@@ -94,15 +96,6 @@ async function mergeAdmissionsData(year) {
 }
 
 
-function changeMatchScores(){
-    //matchObj is a global containing user preferences for match scores
-
-    console.log('matchObj ', matchObj);
-
-    //TODO:  call all schools in allSchoolsCache and update the match score
-
-    return Math.floor(Math.random() * 81) + 10;
-}
 
 
 

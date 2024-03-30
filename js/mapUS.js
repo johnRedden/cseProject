@@ -61,7 +61,8 @@ async function drawMap() {
     var svg = mapContainer.append('svg')
         .attr('width', width)
         .attr('height', height)
-        .attr('id', 'map-svg');
+        .attr('id', 'map-svg')
+        .attr('tabindex', '0'); // Make the SVG focusable
 
     const projection = d3.geoAlbersUsa();
     const path = d3.geoPath().projection(projection);

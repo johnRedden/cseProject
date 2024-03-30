@@ -7,6 +7,9 @@ function changeMatchScores(){
     console.log('matchObj ', matchObj);
 
     //TODO:  call all schools in allSchoolsCache and update the match score
-
-    return Math.floor(Math.random() * 81) + 10;
+    allSchoolsCache = allSchoolsCache.map(school => {
+        // Create a copy of the school object with an updated match_score
+        return {...school, match_score: 5};
+    });
+    // no return
 }
