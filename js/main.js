@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         showSpinner(false);
         showGrayout(false);
         colorCounties();
+        changeMatchScores();
     });
 
     // Checkbox listeners

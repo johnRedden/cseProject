@@ -237,7 +237,8 @@ function showBootstrapModal(colleges, stateName, countyName) {
             }
 
             modalContent += `<p><a href="${collegeURL}" target="_blank" rel="noopener noreferrer"><span><strong>${college.inst_name}</strong></a></span>
-                            (${college.city} - <span>match score: <strong>${college.match_score}</strong>)</span><br>`;
+                            (${college.city} - <span>match score: <strong>${college.match_score}</strong>)</span><br>
+                            <span>Retention Rate: ${Math.round(college.retention_rate*100,0)}% and Headcount: ${college.headcount}</span><br>`;
 
             if(!college.sat_crit_read_25_pctl){
                 modalContent += `<span>No SAT data.</span>`;

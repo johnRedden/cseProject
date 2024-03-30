@@ -12,11 +12,29 @@ async function loadAllSchools() {
     }
     const data = await response.json();
     allSchoolsCache = data.results;
+
     //console.log('All schools loaded:', allSchoolsCache.length);
 
-    // After loading all schools, fetch and merge admissions data
-    await mergeAdmissionsData(2022).then(() => {    
-        console.log('Admissions data merged and flattened:', allSchoolsCache);});
+    // New System Example usage
+    const endpointURL = "https://educationdata.urban.org/api/v1/college-university/ipeds/admissions-requirements/2022/";
+    const propList = ["open_admissions_policy", "reqt_sat_scores", "sat_crit_read_25_pctl", "sat_crit_read_75_pctl", "sat_math_25_pctl", "sat_math_75_pctl"];
+    mergeData(endpointURL, propList).then(() => {
+        console.log('Data successfully merged.');
+    });
+
+    const endpointURL2 = "https://educationdata.urban.org/api/v1/college-university/ipeds/enrollment-headcount/2021/99/";
+    const propList2 = ["headcount"];  // code for Total enrollment level_of_study = 99
+    mergeData(endpointURL2, propList2).then(() => {
+        console.log('headcount Data successfully merged.');
+    });
+
+    const endpointURL3 = "https://educationdata.urban.org/api/v1/college-university/ipeds/fall-retention/2020/";
+    const propList3 = ["retention_rate"];  // code for Total enrollment level_of_study = 99
+    mergeData(endpointURL3, propList3).then(() => {
+        console.log('retention Data successfully merged.');
+    });
+
+
 }
 
 function getFilteredData() {
@@ -37,66 +55,50 @@ function getFilteredData() {
         });
     });
 }
-
-
-// Admissions-Requirements data
-async function fetchAdmissionsRequirements(year) {
+// *** New fetch and merge system
+async function fetchAndTransformData(endpointURL, propList) {
     try {
-        const response = await fetch(`https://educationdata.urban.org/api/v1/college-university/ipeds/admissions-requirements/${year}/`);
+        const response = await fetch(endpointURL);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        const filteredResults = data.results.map(item => ({
-            unitid: item.unitid,
-            open_admissions_policy: item.open_admissions_policy,
-            reqt_sat_scores: item.reqt_sat_scores,
-            sat_crit_read_25_pctl: item.sat_crit_read_25_pctl,
-            sat_crit_read_75_pctl: item.sat_crit_read_75_pctl,
-            sat_math_25_pctl: item.sat_math_25_pctl,
-            sat_math_75_pctl: item.sat_math_75_pctl,
-            sat_writing_25_pctl: item.sat_writing_25_pctl,
-            sat_writing_75_pctl: item.sat_writing_75_pctl
-        }));
+        // Filter and transform the results to include only the specified properties plus unitid
+        const filteredResults = data.results.map(item => {
+            const transformedItem = { unitid: item.unitid };
+            propList.forEach(prop => {
+                transformedItem[prop] = item[prop];
+            });
+            return transformedItem;
+        });
         return filteredResults;
     } catch (error) {
-        console.error('Error fetching admissions requirements:', error);
+        console.error('Error fetching data:', error);
         return [];
     }
 }
-async function mergeAdmissionsData(year) {
-    // Fetch admissions requirements data
-    const admissionsData = await fetchAdmissionsRequirements(year);
-    //console.log('Admissions data fetched:', admissionsData.length);
+async function mergeData(endpointURL, propList) {
+    // Fetch and transform data from the specified endpoint
+    const newData = await fetchAndTransformData(endpointURL, propList);
+    // Convert the new data into a map for easy lookup by unitid
+    const newDataMap = new Map(newData.map(item => [item.unitid, item]));
 
-    // Convert the admissions data into a map for easy lookup
-    const admissionsMap = new Map(admissionsData.map(item => [item.unitid, item]));
-
-    // Merge and flatten specified admissions data with allSchoolsCache
+    // Merge the new data with allSchoolsCache, adding the specified properties
     allSchoolsCache = allSchoolsCache.map(school => {
-        school.match_score = 0;  //init match score to 0
-        if (admissionsMap.has(school.unitid)) {
-            const admissionsInfo = admissionsMap.get(school.unitid);
-
-            // Flatten selected admissions properties into the school object
-            school.open_admissions_policy = admissionsInfo.open_admissions_policy;
-            school.reqt_sat_scores = admissionsInfo.reqt_sat_scores;
-            school.sat_crit_read_25_pctl = admissionsInfo.sat_crit_read_25_pctl;
-            school.sat_crit_read_75_pctl = admissionsInfo.sat_crit_read_75_pctl;
-            school.sat_math_25_pctl = admissionsInfo.sat_math_25_pctl;
-            school.sat_math_75_pctl = admissionsInfo.sat_math_75_pctl;
-            school.sat_writing_25_pctl = admissionsInfo.sat_writing_25_pctl;
-            school.sat_writing_75_pctl = admissionsInfo.sat_writing_75_pctl;
+        if (newDataMap.has(school.unitid)) {
+            const newDataForSchool = newDataMap.get(school.unitid);
+            propList.forEach(prop => {
+                school[prop] = newDataForSchool[prop];
+            });
         }
         return school;
     });
 
-    //console.log('Admissions data merged and flattened:', allSchoolsCache);
-    //colorCounties(); // Reapply colors after merging admissions data
+    console.log('Data merged with allSchoolsCache:', allSchoolsCache);
+    // Optionally, reapply any necessary updates or UI changes after merging the data
 }
 
-
-
+// *** End new system
 
 
 

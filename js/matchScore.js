@@ -6,10 +6,21 @@ function changeMatchScores(){
 
     console.log('matchObj ', matchObj);
 
+
+
     //TODO:  call all schools in allSchoolsCache and update the match score
     allSchoolsCache = allSchoolsCache.map(school => {
-        // Create a copy of the school object with an updated match_score
-        return {...school, match_score: 5};
+
+        // algo for match score here
+        if(school.match_score==undefined)
+            matchResult = 0;  //init
+        else
+            matchResult = Math.round(school.retention_rate*100,0)
+
+
+        // end of algo
+        // add the property match_score to the school object
+        return {...school, match_score: matchResult };
     });
-    // no return
+
 }
