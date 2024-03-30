@@ -59,6 +59,21 @@ document.addEventListener('DOMContentLoaded', function () {
         openCheckbox.checked ? filterObj.open_admissions_policy = 1 : delete filterObj.open_admissions_policy;
         colorCounties(); // handles filtering based on filterObj
     });
+    const rotcCheckbox = document.getElementById('rotcCheckbox');
+    rotcCheckbox.addEventListener('change', () => {
+        rotcCheckbox.checked ? filterObj.rotc = 1 : delete filterObj.rotc;
+        colorCounties(); // handles filtering based on filterObj
+    });
+    const teachCheckbox = document.getElementById('teachCheckbox');
+    teachCheckbox.addEventListener('change', () => {
+        teachCheckbox.checked ? filterObj.teacher_cert = 1 : delete filterObj.teacher_cert;
+        colorCounties(); // handles filtering based on filterObj
+    });
+    const weekendCheckbox = document.getElementById('weekendCheckbox');
+    weekendCheckbox.addEventListener('change', () => {
+        weekendCheckbox.checked ? filterObj.weekend_evening_college = 1 : delete filterObj.weekend_evening_college;
+        colorCounties(); // handles filtering based on filterObj
+    });
 
     document.querySelectorAll('.dropdown-item').forEach(item => {
         item.addEventListener('click', function() {

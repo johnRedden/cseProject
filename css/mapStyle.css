@@ -89,14 +89,6 @@
     z-index: 1050; /* Ensure it's above Bootstrap's modal z-index */
 }
 
-#tooltip-info {
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 5px;
-    /* Add more styles as needed */
-}
-
 .state-highlight {
     stroke: slateblue; /* Bright color for emphasis */
     stroke-width: 2px; /* Make the stroke thicker */
@@ -141,6 +133,14 @@
     background-color: lightblue;
     color: white; 
     border: 1px solid lightseagreen;
+}
+
+.college-info {
+    border: 1px solid #cccccc; /* Light grey border */
+    padding: 10px;
+    margin-bottom: 10px; /* Space between entries */
+    background-color: oldlace; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
 }
 
 

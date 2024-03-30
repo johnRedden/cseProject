@@ -29,11 +29,16 @@ async function loadAllSchools() {
     });
 
     const endpointURL3 = "https://educationdata.urban.org/api/v1/college-university/ipeds/fall-retention/2020/";
-    const propList3 = ["retention_rate"];  // code for Total enrollment level_of_study = 99
+    const propList3 = ["retention_rate"];  
     mergeData(endpointURL3, propList3).then(() => {
         console.log('retention Data successfully merged.');
     });
-
+    
+    const endpointURL4 = "https://educationdata.urban.org/api/v1/college-university/ipeds/institutional-characteristics/2020/";
+    const propList4 = ["occupational_prog_offered", "rotc","teacher_cert","weekend_evening_college"];  
+    mergeData(endpointURL4, propList4).then(() => {
+        console.log('Characteristics Data successfully merged.');
+    });
 
 }
 
@@ -94,7 +99,7 @@ async function mergeData(endpointURL, propList) {
         return school;
     });
 
-    console.log('Data merged with allSchoolsCache:', allSchoolsCache);
+    //console.log('Data merged with allSchoolsCache:', allSchoolsCache);
     // Optionally, reapply any necessary updates or UI changes after merging the data
 }
 

@@ -61,8 +61,7 @@ async function drawMap() {
     var svg = mapContainer.append('svg')
         .attr('width', width)
         .attr('height', height)
-        .attr('id', 'map-svg')
-        .attr('tabindex', '0'); // Make the SVG focusable
+        .attr('id', 'map-svg');
 
     const projection = d3.geoAlbersUsa();
     const path = d3.geoPath().projection(projection);
@@ -135,8 +134,8 @@ async function drawMap() {
     countiesGroup.on("click", function (event, d) {
         const currentCountyFips = d.id.toString().padStart(5, '0');
         const stateCode = currentCountyFips.substring(0, 2);
-        const countyName = d.properties.name; 
-        const stateName = stateLookup[stateCode]; 
+        const countyName = d.properties.name;
+        const stateName = stateLookup[stateCode];
 
         // Retrieve only the filtered colleges located in the clicked county
         const filteredCollegesInCounty = getFilteredData().filter(college =>
@@ -226,7 +225,7 @@ function showBootstrapModal(colleges, stateName, countyName) {
     modalTitle.innerHTML = `Colleges in ${stateName}, ${countyName}`;
 
     let modalContent = '';
-    
+
     if (colleges.length === 0) {
         modalContent += `<p>No selections found in this county.</p>`; // Message when no colleges found
     } else {
@@ -236,18 +235,17 @@ function showBootstrapModal(colleges, stateName, countyName) {
                 collegeURL = 'http://' + collegeURL;
             }
 
-            modalContent += `<p><a href="${collegeURL}" target="_blank" rel="noopener noreferrer"><span><strong>${college.inst_name}</strong></a></span>
-                            (${college.city} - <span>match score: <strong>${college.match_score}</strong>)</span><br>
-                            <span>Retention Rate: ${Math.round(college.retention_rate*100,0)}% and Headcount: ${college.headcount}</span><br>`;
+            modalContent += `<div class="college-info"><p><a href="${collegeURL}" target="_blank" rel="noopener noreferrer"><strong>${college.inst_name}</strong></a>
+            (${college.city} - match score: <strong>${college.match_score}</strong>)<br>
+            Retention Rate: ${Math.round(college.retention_rate * 100)}% and Headcount: ${college.headcount}<br>`;
 
-            if(!college.sat_crit_read_25_pctl){
-                modalContent += `<span>No SAT data.</span>`;
-            }else{
-                modalContent += `<span>SAT Critical Reading IQR: ${college.sat_crit_read_25_pctl} to ${college.sat_crit_read_75_pctl}</span><br>
-                                 <span>SAT Math IQR: ${college.sat_math_25_pctl} to ${college.sat_math_75_pctl}</span><br>`
-                                 //<span>SAT Writing IQR: ${college.sat_writing_25_pctl} to ${college.sat_writing_75_pctl}</span><br>`
+            if (!college.sat_crit_read_25_pctl) {
+                modalContent += `No SAT data.`;
+            } else {
+                modalContent += `SAT Critical Reading IQR: ${college.sat_crit_read_25_pctl} to ${college.sat_crit_read_75_pctl}<br>
+               SAT Math IQR: ${college.sat_math_25_pctl} to ${college.sat_math_75_pctl}<br>`;
             }
-            modalContent += `</p>`;
+            modalContent += `</p></div>`;
         });
     }
 
