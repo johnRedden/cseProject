@@ -79,7 +79,8 @@
 
             </div>
             <div class="col-auto">
-                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#moreOptionsModal">
+                <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal"
+                    data-bs-target="#moreOptionsModal">
                     More...
                 </button>
             </div>
@@ -88,94 +89,59 @@
 
 
         <!-- Check boxes Begin Filtering via checkboxes -->
-
-        <div class="row justify-content-center mt-1">
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="hbcuCheckbox">
-                    <label class="form-check-label" for="hbcuCheckbox">
-                        HBCU Schools
-                    </label>
+        <div class="checkboxes-container mb-0">
+            <div class="row justify-content-center mt-1">
+                <div class="col-6 col-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="hbcuCheckbox">
+                        <label class="form-check-label" for="hbcuCheckbox">HBCU Schools</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="tribalCheckbox">
+                        <label class="form-check-label" for="tribalCheckbox">Tribal Colleges</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="rotcCheckbox">
+                        <label class="form-check-label" for="rotcCheckbox">ROTC</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gradCheckbox">
-                    <label class="form-check-label" for="gradCheckbox">
-                        Graduate Schools
-                    </label>
+                <div class="col-6 col-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gradCheckbox">
+                        <label class="form-check-label" for="gradCheckbox">Graduate Schools</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="assocDeg">
+                        <label class="form-check-label" for="assocDeg">Associate's Degree</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="teachCheckbox">
+                        <label class="form-check-label" for="teachCheckbox">Teacher Certification</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="medCheckbox">
-                    <label class="form-check-label" for="medCheckbox">
-                        Medical Degree
-                    </label>
+                <div class="col-6 col-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="medCheckbox">
+                        <label class="form-check-label" for="medCheckbox">Medical Degree</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="pubCheckbox">
+                        <label class="form-check-label" for="pubCheckbox">Public Schools</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="weekendCheckbox">
+                        <label class="form-check-label" for="weekendCheckbox">Weekend/Evening College</label>
+                    </div>
                 </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="openCheckbox">
-                    <label class="form-check-label" for="openCheckbox">
-                        Open Admissions
-                    </label>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center mt-1">
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="tribalCheckbox">
-                    <label class="form-check-label" for="tribalCheckbox">
-                        Tribal Colleges
-                    </label>
-                </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="assocDeg">
-                    <label class="form-check-label" for="assocDeg">
-                        Associate's Degree
-                    </label>
-                </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="pubCheckbox">
-                    <label class="form-check-label" for="pubCheckbox">
-                        Public Schools
-                    </label>
+                <div class="col-6 col-md-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="openCheckbox">
+                        <label class="form-check-label" for="openCheckbox">Open Admissions</label>
+                    </div>
+                    <!-- Add more checkboxes as needed -->
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-1">
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="rotcCheckbox">
-                    <label class="form-check-label" for="rotcCheckbox">
-                        rotc
-                    </label>
-                </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="teachCheckbox">
-                    <label class="form-check-label" for="teachCheckbox">
-                        Teacher Certification
-                    </label>
-                </div>
-            </div>
-            <div class="col-auto">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="weekendCheckbox">
-                    <label class="form-check-label" for="weekendCheckbox">
-                        Weekend/Evening College
-                    </label>
-                </div>
-            </div>
-        </div>
-
         <!-- Bootstrap Modals -->
         <div class="modal fade" id="collegeModal" tabindex="-1" aria-labelledby="collegeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -239,7 +205,7 @@
                     <div class="modal-body">
                         <p>More options soon...</p>
                     </div>
-    
+
                 </div>
             </div>
         </div>

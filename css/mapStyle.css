@@ -136,12 +136,16 @@
 }
 
 .college-info {
-    border: 1px solid #cccccc; /* Light grey border */
+    border: 1px solid #cccccc;
     padding: 10px;
-    margin-bottom: 10px; /* Space between entries */
-    background-color: oldlace; /* Light background color */
-    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 10px; 
+    background-color: oldlace; 
+    border-radius: 8px; 
 }
 
-
+.checkboxes-container {
+    max-width: 70%; 
+    margin: 0 auto; 
+    padding: 5px; 
+}
 
