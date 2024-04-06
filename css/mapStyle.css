@@ -1,5 +1,8 @@
-#map {
 
+#appTitle{
+    color: #EAAA00;
+}
+#map {
     width: 800px;
     height: 600px;
 }
@@ -9,11 +12,10 @@
     align-items: center; /* Center vertically if needed */
 
 }
-
 .county {
     fill: white;
-    stroke: antiquewhite;
-    stroke-width: 0.5px;
+    stroke: #F9F6E5;
+    stroke-width: 1px;
 }
 
 .county:hover {
@@ -23,7 +25,7 @@
 .state {
     fill: none;
     /* Make states transparent initially */
-    stroke: lightseagreen;
+    stroke: #3A5DAE;
     stroke-width: 0.5px;
 }
 
@@ -36,7 +38,7 @@
 }
 .bi-info-circle {
     cursor: pointer; 
-    color: lightblue; 
+    color: #EAAA00; 
 }
 .bi-info-circle:hover {
     color: lightgray; 
@@ -52,13 +54,16 @@
     border: 1px solid;
     padding: 3px;
     border-radius: 50%;
-    background-color: lightblue;
+    background-color: #003057;
     color: white;
 }
 #filterCount:hover {
     background-color: lightgray;
-    cursor: pointer;
 }
+a:link, a:visited {
+    color: #003057;
+}
+
 .modal img {
     overflow: auto;
     width: 35%;
@@ -67,20 +72,17 @@
     margin-right: auto;
 }
 .modal-header {
-    background-color: lightblue;
+    background-color: #003057;
 }
-.modal-header .btn-close {
-    color: white !important;
-}
+
 .modal-title {
-    background-color: lightblue;
     color: white;
     padding: 10px; /* Optional: Add some padding to give the text some room */
 }
 .tooltip {
     position: absolute;
     background-color: white;
-    border: 1px solid #ccc;
+    border: 1px solid  #F9F6E5;
     padding: 5px;
     opacity: 0;
     /* Hidden by default */
@@ -90,11 +92,11 @@
 }
 
 .state-highlight {
-    stroke: slateblue; /* Bright color for emphasis */
+    stroke: #003057; /* Bright color for emphasis */
     stroke-width: 2px; /* Make the stroke thicker */
 }
 .county-highlight {
-    stroke: antiquewhite;
+    stroke: #3A5DAE;
     stroke-width: 2px; /* Make the stroke thicker */
 }
 
@@ -130,21 +132,21 @@
 }
 
 .btn {
-    background-color: lightblue;
+    background-color: #003057;
     color: white; 
-    border: 1px solid lightseagreen;
+    border: 1px solid #B3A369;
 }
 
 .college-info {
-    border: 1px solid #cccccc;
+    border: 1px solid #003057;
     padding: 10px;
     margin-bottom: 10px; 
-    background-color: oldlace; 
+    background-color: #EAAA00; 
     border-radius: 8px; 
 }
 
 .checkboxes-container {
-    max-width: 70%; 
+    max-width: 80%; 
     margin: 0 auto; 
     padding: 5px; 
 }

@@ -2,7 +2,7 @@
 var currentState = ''
 var stateCode = ''
 let activeCounty = null;
-let countyColor = 'lightblue';
+let countyColor = '#EAAA00'; // Default color for counties
 
 var allSchoolsCache = []; // Stores all schools as a list of objects
 var filterObj = {} // stores the filter as a global variable.
