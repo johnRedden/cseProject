@@ -236,15 +236,26 @@ function showBootstrapModal(colleges, stateName, countyName) {
             }
 
             modalContent += `<div class="college-info"><p><a href="${collegeURL}" target="_blank" rel="noopener noreferrer"><strong>${college.inst_name}</strong></a>
-            (${college.city} - match score: <strong>${college.match_score}</strong>)<br>
-            Retention Rate: ${Math.round(college.retention_rate * 100)}% and Headcount: ${college.headcount}<br>`;
+            (${college.city} - match score: <strong>${college.match_score}</strong>)<br>`;
+            if (!college.tuition_fees_ft) {
+                modalContent += `No Tuition data.<br>`;
+            } else {
+                const formattedTuition = college.tuition_fees_ft.toLocaleString();
+                modalContent += `Avg. Yearly Tuition and Fees: \$${formattedTuition}<br>`;
+            }
 
+            if (!college.retention_rate) {
+                modalContent += `No Retention data.<br>`;
+            } else {
+                modalContent += `Retention Rate: ${Math.round(college.retention_rate * 100)}% and Headcount: ${college.headcount}<br>`;
+            }
             if (!college.sat_crit_read_25_pctl) {
-                modalContent += `No SAT data.`;
+                modalContent += `No SAT data.<br>`;
             } else {
                 modalContent += `SAT Critical Reading IQR: ${college.sat_crit_read_25_pctl} to ${college.sat_crit_read_75_pctl}<br>
                SAT Math IQR: ${college.sat_math_25_pctl} to ${college.sat_math_75_pctl}<br>`;
             }
+
             modalContent += `</p></div>`;
         });
     }

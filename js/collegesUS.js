@@ -40,6 +40,13 @@ async function loadAllSchools() {
         console.log('Characteristics Data successfully merged.');
     });
 
+    const endpointURL5 = "https://educationdata.urban.org/api/v1/college-university/ipeds/academic-year-tuition/2021/";
+    const propList5 = ["tuition_fees_ft"];  
+    mergeData(endpointURL5, propList5).then(() => {
+        console.log('Tuition Fees Data successfully merged.');
+    });
+    
+
 }
 
 function getFilteredData() {

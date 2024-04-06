@@ -3,7 +3,7 @@
 
 function changeMatchScores(){
     //matchObj is a global containing user preferences for match scores
-
+    //console.log('allSchoolsCache ', allSchoolsCache);
     console.log('matchObj ', matchObj);
 
 
@@ -15,7 +15,10 @@ function changeMatchScores(){
         if(school.match_score==undefined)
             matchResult = 0;  //init
         else
-            matchResult = Math.round(school.retention_rate*100,0)
+            if(school.retention_rate)
+                matchResult = Math.round(school.retention_rate*100,0)
+            else
+                matchResult = 42;
 
 
         // end of algo
