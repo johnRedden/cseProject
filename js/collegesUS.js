@@ -22,13 +22,13 @@ async function loadAllSchools() {
         console.log('Data successfully merged.');
     });
 
-    const endpointURL2 = "https://educationdata.urban.org/api/v1/college-university/ipeds/enrollment-headcount/2021/99/";
+    const endpointURL2 = "https://educationdata.urban.org/api/v1/college-university/ipeds/enrollment-headcount/2021/99/?sex=99&race=99";
     const propList2 = ["headcount"];  // code for Total enrollment level_of_study = 99
     mergeData(endpointURL2, propList2).then(() => {
         console.log('headcount Data successfully merged.');
     });
 
-    const endpointURL3 = "https://educationdata.urban.org/api/v1/college-university/ipeds/fall-retention/2020/";
+    const endpointURL3 = "https://educationdata.urban.org/api/v1/college-university/ipeds/fall-retention/2020/?ftpt=99";
     const propList3 = ["retention_rate"];  
     mergeData(endpointURL3, propList3).then(() => {
         console.log('retention Data successfully merged.');
@@ -40,7 +40,7 @@ async function loadAllSchools() {
         console.log('Characteristics Data successfully merged.');
     });
 
-    const endpointURL5 = "https://educationdata.urban.org/api/v1/college-university/ipeds/academic-year-tuition/2021/";
+    const endpointURL5 = "https://educationdata.urban.org/api/v1/college-university/ipeds/academic-year-tuition/2021/?level_of_study=1&tuition_type=3";
     const propList5 = ["tuition_fees_ft"];  
     mergeData(endpointURL5, propList5).then(() => {
         console.log('Tuition Fees Data successfully merged.');
@@ -75,6 +75,7 @@ async function fetchAndTransformData(endpointURL, propList) {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        //console.log('Data fetched ', data.results);
         // Filter and transform the results to include only the specified properties plus unitid
         const filteredResults = data.results.map(item => {
             const transformedItem = { unitid: item.unitid };

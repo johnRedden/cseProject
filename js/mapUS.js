@@ -55,7 +55,7 @@ const stateLookup = {
 
 async function drawMap() {
     const mapContainer = d3.select('#map');
-    const width = 1000, height = 800;
+    const width = 1200, height = 800;
 
     // svg needs to be global variable
     var svg = mapContainer.append('svg')
@@ -65,6 +65,24 @@ async function drawMap() {
 
     const projection = d3.geoAlbersUsa();
     const path = d3.geoPath().projection(projection);
+
+    // Define the zoom behavior, limiting the scale extent to 0.5x-5x
+    var zoom = d3.zoom()
+        .scaleExtent([0.5, 5])
+        .on('zoom', function (event) {
+            // Update the projection's scale
+            projection.scale(event.transform.k * 1000);
+
+            // Update the paths (your map features)
+            svg.selectAll('path').attr('d', path);
+
+            // Update the position of the map features
+            svg.selectAll('path')
+                .attr('transform', event.transform);
+        });
+
+    // Apply the zoom behavior to the svg element
+    svg.call(zoom);
 
     // Load both datasets
     const [statesData, countiesData] = await Promise.all([
