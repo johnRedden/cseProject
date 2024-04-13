@@ -247,6 +247,9 @@ function showBootstrapModal(colleges, stateName, countyName) {
     if (colleges.length === 0) {
         modalContent += `<p>No selections found in this county.</p>`; // Message when no colleges found
     } else {
+        // Sort colleges by match_score in descending order
+        colleges.sort((a, b) => b.match_score - a.match_score);
+        
         colleges.forEach(college => {
             let collegeURL = college.url_school;
             if (!collegeURL.startsWith('http://') && !collegeURL.startsWith('https://')) {

@@ -8,7 +8,6 @@ body, html {
     color: #EAAA00;
 }
 
-
 #map {
     display: block;
     margin-left: auto;
@@ -16,28 +15,26 @@ body, html {
     width: 80%;
 
 }
-
 .county {
     fill: white;
     stroke: #F9F6E5;
     stroke-width: 1px;
 }
-
 .county:hover {
     fill: #aaa;
 }
-
 .state {
     fill: none;
     /* Make states transparent initially */
     stroke: #3A5DAE;
     stroke-width: 0.5px;
 }
-
 .state:hover {
     stroke: #000;
     /* Highlight state on hover */
 }
+
+
 .bi-info-circle{
     font-size: 0.5em;
 }
@@ -48,23 +45,23 @@ body, html {
 .bi-info-circle:hover {
     color: lightgray; 
 }
-.count {
-    display: inline-block;
-    min-width: 50px; 
-    text-align: center;
-}
+
+
+
 #filterCount {
+    min-width: 50px;
     display: inline-block;
-    font-size: 0.4em;
-    border: 1px solid;
+    font-size: 0.5em;
+
     padding: 3px;
     border-radius: 50%;
     background-color: #003057;
-    color: white;
+    color: #EAAA00;
 }
 #filterCount:hover {
     background-color: lightgray;
 }
+
 a:link, a:visited {
     color: #003057;
 }
@@ -79,11 +76,11 @@ a:link, a:visited {
 .modal-header {
     background-color: #003057;
 }
-
 .modal-title {
-    color: white;
+    color: #EAAA00;
     padding: 10px; /* Optional: Add some padding to give the text some room */
 }
+
 .tooltip {
     position: absolute;
     background-color: white;
@@ -138,17 +135,18 @@ a:link, a:visited {
 
 .btn {
     background-color: #003057;
-    color: white; 
-    border: 1px solid #B3A369;
+    color: #EAAA00; 
 }
 
 .college-info {
-    border: 1px solid #003057;
+    border: 1px solid #EAAA00;
     padding: 10px;
     margin-bottom: 10px; 
-    background-color: #EAAA00; 
+    background-color: #F9F6E5; 
     border-radius: 8px; 
 }
+
+
 
 .checkboxes-container {
     max-width: 80%; 
@@ -156,3 +154,48 @@ a:link, a:visited {
     padding: 5px; 
 }
 
+/* Custom Checkbox Styling */
+.styled-checkbox {
+    position: absolute;
+    opacity: 0; /* Hide the default checkbox */
+    cursor: pointer;
+}
+
+.styled-checkbox + .form-check-label {
+    position: relative;
+    padding-left: 30px; 
+    cursor: pointer;
+}
+
+.styled-checkbox + .form-check-label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #EAAA00; 
+    background-color: #fff; 
+    border-radius: 3px; 
+    transition: background-color 0.3s ease;
+}
+
+.styled-checkbox:checked + .form-check-label:before {
+    background-color: #003057; 
+}
+
+.styled-checkbox:focus + .form-check-label:before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 48, 87, 0.25); 
+}
+
+.styled-checkbox:checked + .form-check-label:after {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid #EAAA00;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
