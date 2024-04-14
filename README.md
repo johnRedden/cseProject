@@ -1,5 +1,7 @@
 **CSE Team Project** - College Explorer
 
+**Video Demo:** TBA
+
 **Published Firebase App:**  https://college-selection-tool.web.app/
 
 **DESCRIPTION:** This is an interactive college selection tool (a web app linked above) called “College Explorer.” This application involves an interactive D3.js map where users can hover over states (and counties) to discover colleges that match their specific criteria. Double clicking on a county presents a popup modal with institutional characteristics drawn from 6 different publicly available application programming interface (API) endpoints, merged, and stored locally in the browser cache. Users can personalize their choices; this invokes a calculation of a “match score” for each institution based on predictive analytics for college success.  The visualization contains two carefully designed main interactive features: 
@@ -19,8 +21,8 @@ https://creativecommons.org/licenses/by-sa/4.0/
 
 **EXECUTION:**
 
-8. In the terminal spin up a web server, run command:  python -m http.server
-9. Navigate to the local host it creates, for example: http://localhost:8000/
+7. In the terminal spin up a web server, run command:  python -m http.server
+8. Navigate to the local host it creates, for example: http://localhost:8000/
 
 Give the api a minute to come in, you may need to hit REFRESH.  Open the developer tools to see progress on console.  You may have a CORS error, check in "Network" and resolve the error.
 
