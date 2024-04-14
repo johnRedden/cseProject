@@ -12,6 +12,9 @@ async function loadAllSchools() {
     }
     const data = await response.json();
     allSchoolsCache = data.results;
+    console.log('All schools loaded:', allSchoolsCache.length);
+    //console.log('allSchoolsCache', allSchoolsCache);
+    colorCounties();
 
     //console.log('All schools loaded:', allSchoolsCache.length);
 
@@ -35,15 +38,22 @@ async function loadAllSchools() {
     });
     
     const endpointURL4 = "https://educationdata.urban.org/api/v1/college-university/ipeds/institutional-characteristics/2020/";
-    const propList4 = ["occupational_prog_offered", "rotc","teacher_cert","weekend_evening_college"];  
+    const propList4 = ["occupational_prog_offered", "rotc","teacher_cert","weekend_evening_college", "dist_progs_all","dist_grad_progs_offered"];  
     mergeData(endpointURL4, propList4).then(() => {
         console.log('Characteristics Data successfully merged.');
+        //console.log('allSchoolsCache', allSchoolsCache);
     });
 
     const endpointURL5 = "https://educationdata.urban.org/api/v1/college-university/ipeds/academic-year-tuition/2021/?level_of_study=1&tuition_type=3";
     const propList5 = ["tuition_fees_ft"];  
     mergeData(endpointURL5, propList5).then(() => {
         console.log('Tuition Fees Data successfully merged.');
+    });
+
+    const endpointURL6 = "https://educationdata.urban.org/api/v1/college-university/ipeds/grad-rates/2017/?subcohort=99&race=99&sex=99";
+    const propList6 = ["completion_rate_150pct"];  
+    mergeData(endpointURL6, propList6).then(() => {
+        console.log('Graduation Data successfully merged.');
     });
     
 
@@ -93,6 +103,7 @@ async function fetchAndTransformData(endpointURL, propList) {
 async function mergeData(endpointURL, propList) {
     // Fetch and transform data from the specified endpoint
     const newData = await fetchAndTransformData(endpointURL, propList);
+    console.log('New data fetched:', newData.length);
     // Convert the new data into a map for easy lookup by unitid
     const newDataMap = new Map(newData.map(item => [item.unitid, item]));
 
@@ -108,7 +119,7 @@ async function mergeData(endpointURL, propList) {
     });
 
     //console.log('Data merged with allSchoolsCache:', allSchoolsCache);
-    // Optionally, reapply any necessary updates or UI changes after merging the data
+
 }
 
 // *** End new system

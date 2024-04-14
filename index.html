@@ -26,7 +26,7 @@
                 <h2>
                     <img src="data/gtLogot.png" alt="Image" class="img-fluid" style="width: 50px; height: 50px;">
                     <span id="appTitle">College Explorer</span>
-                    <span class="count" id="filterCount">0</span>
+                    <span id="filterCount">0</span>
                     <i class="bi bi-info-circle" data-bs-toggle="modal" data-bs-target="#infoModal"></i>
                 </h2>
             </div>
@@ -81,11 +81,16 @@
 
             </div>
             <div class="col-auto">
+                <button id="resetZoom" class="btn btn-primary btn-sm" type="button">
+                    Reset Map
+                </button>
+            </div>  
+            <!-- <div class="col-auto">
                 <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal"
                     data-bs-target="#moreOptionsModal">
                     More...
                 </button>
-            </div>
+            </div> -->
 
         </div>
 
@@ -132,13 +137,21 @@
                     </div>
                     <div class="form-check">
                         <input class="form-check-input styled-checkbox" type="checkbox" id="weekendCheckbox">
-                        <label class="form-check-label" for="weekendCheckbox">Weekend/Evening College</label>
+                        <label class="form-check-label" for="weekendCheckbox">Weekend/Evening</label>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="form-check">
                         <input class="form-check-input styled-checkbox" type="checkbox" id="openCheckbox">
                         <label class="form-check-label" for="openCheckbox">Open Admissions</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input styled-checkbox" type="checkbox" id="distanceCheckbox">
+                        <label class="form-check-label" for="distanceCheckbox">All Distance</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input styled-checkbox" type="checkbox" id="distanceGradCheckbox">
+                        <label class="form-check-label" for="distanceGradCheckbox">Distance Grad Progs</label>
                     </div>
                     <!-- Add more checkboxes as needed -->
                 </div>
@@ -218,11 +231,12 @@
 
     </div>
 
+
+
+    <div id="map"></div>
+
     <div id="grayout" class="grayout"></div>
     <div id="spinner" class="spinner"></div>
-
-    <div id="map" class="mt-3"></div>
-
     <div id="tooltip" class="tooltip" style="opacity: 0;"></div>
 
     <!-- Rest of your content -->

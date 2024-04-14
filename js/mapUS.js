@@ -55,15 +55,19 @@ const stateLookup = {
 
 async function drawMap() {
     const mapContainer = d3.select('#map');
+    const margin = { top: 0, right: 30, bottom: 0, left: 40 };
     const width = 1200, height = 800;
 
     // svg needs to be global variable
     var svg = mapContainer.append('svg')
-        .attr('width', width)
-        .attr('height', height)
-        .attr('id', 'map-svg');
+        .attr('id', 'map-svg')
+        .attr("width", width + margin.right + margin.left)
+        .attr("height", height + margin.top + margin.bottom)
 
-    const projection = d3.geoAlbersUsa();
+
+    const projection = d3.geoAlbersUsa()
+        .translate([width/2 + 50, 240]) 
+ 
     const path = d3.geoPath().projection(projection);
 
     // Define the zoom behavior, limiting the scale extent to 0.5x-5x
@@ -83,6 +87,17 @@ async function drawMap() {
 
     // Apply the zoom behavior to the svg element
     svg.call(zoom);
+
+//reset zoom map functionality
+function resetZoom() {
+    console.log('Resetting zoom')
+    svg.transition() 
+        .duration(750) 
+        .call(zoom.transform, d3.zoomIdentity); 
+}
+
+d3.select('#resetZoom').on('click', resetZoom);
+
 
     // Load both datasets
     const [statesData, countiesData] = await Promise.all([
@@ -249,7 +264,7 @@ function showBootstrapModal(colleges, stateName, countyName) {
     } else {
         // Sort colleges by match_score in descending order
         colleges.sort((a, b) => b.match_score - a.match_score);
-        
+
         colleges.forEach(college => {
             let collegeURL = college.url_school;
             if (!collegeURL.startsWith('http://') && !collegeURL.startsWith('https://')) {
@@ -275,6 +290,11 @@ function showBootstrapModal(colleges, stateName, countyName) {
             } else {
                 modalContent += `SAT Critical Reading IQR: ${college.sat_crit_read_25_pctl} to ${college.sat_crit_read_75_pctl}<br>
                SAT Math IQR: ${college.sat_math_25_pctl} to ${college.sat_math_75_pctl}<br>`;
+            }
+            if (!college.completion_rate_150pct) {
+                modalContent += `No graduation rate.<br>`;
+            } else {
+                modalContent += `Graduation Rate: ${Math.round(college.completion_rate_150pct * 100, 1)}%<br>`;
             }
 
             modalContent += `</p></div>`;

@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadAllSchools().then(() => {
         showSpinner(false);
         showGrayout(false);
-        colorCounties();
+        //colorCounties();
         changeMatchScores();
     });
 
@@ -72,6 +72,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const weekendCheckbox = document.getElementById('weekendCheckbox');
     weekendCheckbox.addEventListener('change', () => {
         weekendCheckbox.checked ? filterObj.weekend_evening_college = 1 : delete filterObj.weekend_evening_college;
+        colorCounties(); // handles filtering based on filterObj
+    });
+    const distanceCheckbox = document.getElementById('distanceCheckbox');
+    distanceCheckbox.addEventListener('change', () => {
+        distanceCheckbox.checked ? filterObj.dist_progs_all = 1 : delete filterObj.dist_progs_all;
+        colorCounties(); // handles filtering based on filterObj
+    });
+    const distanceGradCheckbox = document.getElementById('distanceGradCheckbox');
+    distanceGradCheckbox.addEventListener('change', () => {
+        distanceGradCheckbox.checked ? filterObj.dist_grad_progs_offered = 1 : delete filterObj.dist_grad_progs_offered;
         colorCounties(); // handles filtering based on filterObj
     });
 
