@@ -4,7 +4,7 @@
 function changeMatchScores(){
     //matchObj is a global containing user preferences for match scores
     
-    //console.log('matchObj ', matchObj);
+    console.log('matchObj ', matchObj);
     //console.log('allSchoolsCache ', allSchoolsCache);
 
 

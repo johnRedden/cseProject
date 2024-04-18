@@ -7,6 +7,16 @@ body, html {
 
 #appTitle{
     color: #EAAA00;
+    text-shadow: -1px 0 #003057, 0 1px #003057, 1px 0 #003057, 0 -1px #003057;
+}
+.stripe {
+    background-color: #003057; /* Replace 'blue' with the specific color you want */
+    height: 50px; /* Adjust the height to your liking */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* This ensures the stripe appears above other elements */
 }
 
 #map {
