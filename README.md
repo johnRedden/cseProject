@@ -21,7 +21,7 @@ https://creativecommons.org/licenses/by-sa/4.0/
 
 **EXECUTION:**
 
-7. In the terminal spin up a web server, run command:  python -m http.server
+7. In the terminal spin up a web server, run command:  ```python -m http.server```
 8. Navigate to the local host it creates, for example: http://localhost:8000/
 
 Give the api a minute to come in, you may need to hit REFRESH.  Open the developer tools to see progress on console.  You may have a CORS error, check in "Network" and resolve the error.
