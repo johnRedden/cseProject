@@ -108,7 +108,7 @@ var myModal = new bootstrap.Modal(document.getElementById('collegeModal'), {
 // Add event listener for when the modal is closed
 document.getElementById('collegeModal').addEventListener('hidden.bs.modal', function () {
     if (activeCounty) {
-        activeCounty.style('fill', null); // Reset the active county's color
-        activeCounty = null; // Clear the reference to the active county
+        activeCounty.style('fill', null);
+        activeCounty = null; 
     }
 });

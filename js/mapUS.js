@@ -74,21 +74,16 @@ async function drawMap() {
     var zoom = d3.zoom()
         .scaleExtent([0.5, 5])
         .on('zoom', function (event) {
-            // Update the projection's scale
+           
             projection.scale(event.transform.k * 1000);
-
-            // Update the paths (your map features)
             svg.selectAll('path').attr('d', path);
 
-            // Update the position of the map features
             svg.selectAll('path')
                 .attr('transform', event.transform);
         });
 
-    // Apply the zoom behavior to the svg element
     svg.call(zoom);
 
-//reset zoom map functionality
 function resetZoom() {
     console.log('Resetting zoom')
     svg.transition() 
@@ -116,27 +111,25 @@ d3.select('#resetZoom').on('click', resetZoom);
         .join('path')
         .attr('d', path)
         .attr('class', 'county')
-        .attr('data-id', d => parseInt(d.id)) // Add this line to store the FIPS code
+        .attr('data-id', d => parseInt(d.id)) 
 
-    // Draw states
     svg.append('g')
         .selectAll('path')
         .data(statesGeo.features)
         .join('path')
         .attr('d', path)
         .attr('class', 'state')
-        .attr('fill', 'none') // Keep fill transparent
-        .attr('stroke', 'black'); // Set the outline color to black
+        .attr('fill', 'none') 
+        .attr('stroke', 'black'); 
 
     // Tooltip Setup
     const tooltip = d3.select('.tooltip');
 
     countiesGroup.on('mouseover', function (event, d) {
-        // Convert the hovered county's FIPS code to the format used in your data
+
         const currentCountyFips = d.id.toString().padStart(5, '0');
         const stateCode = currentCountyFips.substring(0, 2);
 
-        // Retrieve only the filtered colleges located in the hovered county
         const filteredCollegesInCounty = getFilteredData().filter(college =>
             college.county_fips.toString().padStart(5, '0') === currentCountyFips
         );
@@ -152,13 +145,12 @@ d3.select('#resetZoom').on('click', resetZoom);
             .style('display', 'inline-block')
             .transition().duration(200).style('opacity', 0.9);
 
-        // Optionally, you can also highlight the county here if needed
         highlightCounty(currentCountyFips);
-        highlightState(stateCode); // Highlight the state as well
+        highlightState(stateCode); 
     })
         .on('mouseout', () => {
             tooltip.transition().duration(500).style('opacity', 0);
-            clearCountyHighlight(); // If you're highlighting the county on hover
+            clearCountyHighlight(); 
         });
 
 
@@ -175,15 +167,14 @@ d3.select('#resetZoom').on('click', resetZoom);
             college.county_fips.toString().padStart(5, '0') === currentCountyFips
         );
 
-        // Call showBootstrapModal with the filtered colleges and contextual information
         showBootstrapModal(filteredCollegesInCounty, stateName, countyName);
     });
 
     // for the tooltip only
     function buildCollegeContent(colleges, stateName, countyName) {
-        let content = `<h5>${countyName} ${stateName}</h5><ul>`; // Add county name at the top
+        let content = `<h5>${countyName} ${stateName}</h5><ul>`; 
         if (colleges.length === 0) {
-            content += '<li>No selections found in this county.</li>'; // Updated message
+            content += '<li>No selections found in this county.</li>'; 
         } else {
             colleges.forEach(college => {
                 content += `<li><strong>${college.inst_name}</strong> (${college.city})</li>`;
@@ -201,17 +192,17 @@ function showSpinner(show) {
     d3.select('.spinner').style('display', show ? 'block' : 'none');
 }
 function highlightState(stateId) {
-    // Apply highlight style to the specified state
+
     d3.selectAll('.state')
         .classed('state-highlight', function (d) { return d.id === stateId; });
 }
 function clearStateHighlight() {
-    // Remove highlight style from all states
+
     d3.selectAll('.state').classed('state-highlight', false);
 }
 
 function highlightCounty(countyFips) {
-    // Highlight the specified county
+
     d3.selectAll('.county')
         .classed('county-highlight', function (d) {
             const currentCountyFips = d.id.toString().padStart(5, '0');
@@ -220,28 +211,27 @@ function highlightCounty(countyFips) {
 }
 
 function clearCountyHighlight() {
-    // Remove highlight class from all counties
+
     d3.selectAll('.county').classed('county-highlight', false);
 }
 
 
 function colorCounties() {
     const svg = d3.select('#map-svg');
-    const filteredData = getFilteredData(); // Get dynamically filtered data based on filterObj
+    const filteredData = getFilteredData(); 
     const filterCount = document.querySelector('#filterCount');
     filterCount.innerHTML = filteredData.length;
 
 
     svg.selectAll('.county')
-        .style('fill', null); // Reset to default before applying new colors
+        .style('fill', null); 
 
-    // Create a set of filtered county FIPS codes, ensuring they are padded to 5 digits
+
     const filteredCounties = new Set(filteredData.map(item => item.county_fips.toString().padStart(5, '0')));
 
-    // Iterate over each county path and color it if it's in the filtered set
     svg.selectAll('.county')
         .each(function (d) {
-            // Ensure the county FIPS codes from the map are also padded to 5 digits for comparison
+
             const currentCountyFips = d.id.toString().padStart(5, '0');
             if (filteredCounties.has(currentCountyFips)) {
                 d3.select(this).style('fill', countyColor); // Use the global countyColor for coloring
@@ -251,16 +241,15 @@ function colorCounties() {
 
 
 function showBootstrapModal(colleges, stateName, countyName) {
-    const modalTitle = document.getElementById('collegeModalLabel'); // Access the modal title element
+    const modalTitle = document.getElementById('collegeModalLabel'); 
     const modalBody = document.getElementById('collegeModalBody');
 
-    // Set the modal title to include state and county names
     modalTitle.innerHTML = `Colleges in ${stateName}, ${countyName}`;
 
     let modalContent = '';
 
     if (colleges.length === 0) {
-        modalContent += `<p>No selections found in this county.</p>`; // Message when no colleges found
+        modalContent += `<p>No selections found in this county.</p>`; 
     } else {
         // Sort colleges by match_score in descending order
         colleges.sort((a, b) => b.match_score - a.match_score);
